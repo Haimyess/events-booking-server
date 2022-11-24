@@ -4,7 +4,7 @@ const db = require("../database");
 
 // Getting all the Events
 const getAllEvents = () => {
-  return db("events").select("*").orderBy("event_date_start");
+  return db("events").select("*").orderBy("event_name");
 };
 
 // Getting a single Event
