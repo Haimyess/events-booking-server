@@ -1,0 +1,17 @@
+CREATE TABLE dates (
+	event_date_id SERIAL,
+	event_name VARCHAR(100) REFERENCES events (event_name),
+	event_day DATE,
+	event_hour TEXT 
+);
+
+SELECT * FROM dates;
+
+INSERT INTO dates (event_name, event_day, event_hour)
+VALUES 
+	('Vegan Festival', '2022-06-07', '14:00'),
+	('Vegan Festival', '2022-06-08', '14:00'),
+	('Vegan Festival', '2022-06-09', '14:00'),
+	('Laila Lavan White Night Tel Aviv', '2022-07-01', '15:00'),
+	('Laila Lavan White Night Tel Aviv', '2022-07-02', '17:00');
+	

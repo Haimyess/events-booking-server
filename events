@@ -1,0 +1,58 @@
+
+CREATE TABLE events (
+	event_id  SERIAL UNIQUE ,
+	event_type VARCHAR (150) NOT NULL,
+	event_subcategory VARCHAR(255),
+	event_name VARCHAR (100) NOT NULL PRIMARY KEY,
+	event_date_start DATE ,
+	event_date_end DATE ,
+-- 	event_time VARCHAR(100) ,
+	event_info TEXT NOT NULL,
+-- 	event_price INTEGER  NOT NULL ,
+	event_address VARCHAR(150) ,
+	event_city VARCHAR(50),
+	event_img TEXT
+);
+
+
+
+ALTER TABLE events
+DROP CONSTRAINT  events_pkey;
+
+ALTER TABLE events
+DROP COLUMN event_time;
+
+SELECT * FROM events;
+
+INSERT INTO events 
+(event_type,  event_subcategory, event_name, event_date_start, 
+ event_date_end, event_info, event_address, event_city, event_img )
+ VALUES 
+--  First event
+ ('Festival', 'Local', 'Laila Lavan White Night Tel Aviv', '2022-07-01', '2022-07-01' , 
+  'Tel Aviv’s White Night celebration is one of the biggest events of the year, with all night parties;
+  and when the shop owners and restaurants literally don’t close. Stores that usually close at 10pm will
+  be open till 6am and beer will be drunk and music will be heard in different public locations throughout
+  the city. Even some museums and galleries stay open all night, so there are hundreds of things to do!', 
+  'Tel aviv',  'Tel aviv', NULL ),
+--   Second event
+ ('Festival', 'Food', 'Vegan Festival', '2022-06-07', '2022-06-09 ', 
+  'During the festival, you’ll enjoy a 100 vegan stalls from the best vegan restaurants and shops. 
+  In addition, you’ll find music, a holistic area, a children’s area, lectures about healthy vegan 
+  lifestyle and cooking workshops with famous chefs. Attend the event, bring with you friends and
+  family and show them all the benefits about being vegan.', 
+  'Sarona Park',  'Tel aviv', NULL );
+ 
+ -- Add a constrain to a column
+ALTER TABLE events
+  ADD CONSTRAINT events_pk 
+    PRIMARY KEY (event_name);
+ 
+ALTER TABLE events
+  ADD CONSTRAINT unique_id 
+    UNIQUE (event_id);
+ 
+
+    
+ 
+ 

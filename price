@@ -1,0 +1,12 @@
+CREATE TABLE price (
+	event_price_id SERIAL,
+	event_id INTEGER REFERENCES events (event_id),
+	event_price VARCHAR(50)
+);
+
+SELECT * FROM price;
+
+INSERT INTO price (event_id, event_price)
+VALUES 
+(1, 0),
+(2, 0);
