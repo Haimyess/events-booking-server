@@ -8,23 +8,30 @@ const bcrypt = require("bcrypt");
 const getAllUsers = () => {
   return db("users").select("*").orderBy("user_name");
 };
+// Update user PUT
+
+const editUser = (id, userEdit) => {
+  console.log(userEdit);
+  console.log(id);
+  return db("users").update(userEdit).where({ user_id: id }).returning("*");
+};
 
 // POST: Adding a user
 // We are getting the user and passing it to the addUser from the users controllers req,.body and adding it to the database here.
 const addUser = async (user) => {
-  const { user_id, user_name, user_email, user_password } = user;
+  // const { user_id, user_name, user_email, user_password } = user;
   // --------------------------------------------------
   // Create an if statement that chacks If the user exists, send a message of user exists
   // --------------------------------------------------
-  const salt = await bcrypt.genSalt();
-  const hashPassword = await bcrypt.hash(user_password, salt);
+  // const salt = await bcrypt.genSalt();
+  // const hashPassword = await bcrypt.hash(user_password, salt);
 
-  const userWithHashPass = {
-    user_id: user_id,
-    user_name: user_name,
-    user_email: user_email,
-    user_password: hashPassword,
-  };
+  // const userWithHashPass = {
+  //   user_id: user_id,
+  //   user_name: user_name,
+  //   user_email: user_email,
+  //   user_password: hashPassword,
+  // };
   // const salt
   // const hashedPassword = {};
 
@@ -35,11 +42,11 @@ const addUser = async (user) => {
   //   const userWithId = { ...user, user_id: uuidv4() };
 
   // put it in the insert --> { ...user, user_idTest: uuidv4() }
-  console.log(userWithHashPass);
-  return db("users").insert(userWithHashPass).returning("*");
+  // console.log(userWithHashPass);
+  return db("users").insert(user).returning("*");
 };
 
-const checkUser = async (email) => {
+const checkUser = (email) => {
   // const { user_email } = user;
   // const email = user_email;
 
@@ -50,15 +57,16 @@ const checkUser = async (email) => {
 
   // const hashedPass = user_password;
   // maybe here i should do it
-  console.log("success");
-
+  // console.log("success");
   return db("users")
     .select("user_email", "user_password", "user_name", "user_id")
     .where({ user_email: email });
+  // console.log(user);
 };
 
 module.exports = {
   addUser,
   getAllUsers,
   checkUser,
+  editUser,
 };

@@ -7,6 +7,7 @@ const {
   _addUser,
   _getAllUsers,
   _checkUser,
+  _editUser,
 } = require("../controllers/Users.js");
 
 router.get("/", _getAllUsers);
@@ -16,5 +17,6 @@ router.post("/register", _addUser);
 
 // Login route
 router.post("/login", _checkUser);
+router.put("/:id", _editUser);
 
 module.exports = router;

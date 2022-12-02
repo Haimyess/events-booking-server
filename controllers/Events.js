@@ -6,6 +6,7 @@ const {
   getCategory,
   searchEvents,
   addEvent,
+  getEventsByProducer,
 } = require("../models/Events");
 
 //CRUD
@@ -72,7 +73,18 @@ const _addEvent = (req, res) => {
   addEvent(req.body)
     .then((data) => {
       res.json(data);
-      // console.log(req.query.q);
+      console.log(req.body);
+    })
+    .catch((err) => {
+      res.json({ msg: err.message });
+    });
+};
+
+const _getEventsByProducer = (req, res) => {
+  getEventsByProducer(req.params.producer)
+    .then((data) => {
+      res.json(data);
+      console.log(data);
     })
     .catch((err) => {
       res.json({ msg: err.message });
@@ -96,4 +108,5 @@ module.exports = {
   _getCategory,
   _searchEvents,
   _addEvent,
+  _getEventsByProducer,
 };

@@ -1,0 +1,24 @@
+-- CREATE EXTENSION citext;
+-- CREATE DOMAIN domain_email AS citext
+-- CHECK(
+--    VALUE ~ '^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$'
+-- );
+
+
+CREATE TABLE users 
+(	
+	user_id TEXT PRIMARY KEY,
+	user_name VARCHAR(255) UNIQUE,
+	user_email VARCHAR(60) NOT NULL UNIQUE ,
+	user_password VARCHAR(10) NOT NULL
+
+);
+
+DROP TABLE users;
+
+-- ALTER TABLE users
+-- ALTER COLUMN user_password TYPE VARCHAR(10);
+
+ALTER TABLE users
+ADD UNIQUE (user_name);
+SELECT * FROM users;

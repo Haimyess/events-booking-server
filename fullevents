@@ -1,0 +1,60 @@
+CREATE TABLE allevents (
+	event_id  SERIAL UNIQUE ,
+	event_type VARCHAR (150) NOT NULL,
+	event_subcategory VARCHAR(255),
+	event_name VARCHAR (100) NOT NULL PRIMARY KEY,
+	event_date_start DATE ,
+	event_date_end DATE ,
+	event_time VARCHAR(100) ,
+	event_info TEXT NOT NULL,
+	event_address VARCHAR(150) ,
+	event_city VARCHAR(50),
+	event_img TEXT,
+	event_price VARCHAR(50),
+	event_producer VARCHAR(255)
+);
+
+
+SELECT * FROM allevents;
+Where event_producer = 'Haim';
+
+INSERT INTO allevents 
+(event_type,  event_subcategory, event_name, event_date_start, 
+ event_date_end, event_time, event_info, event_address, event_city, event_img, event_price, event_producer )
+ VALUES 
+--  First event
+ ('Festival', 'Local', 'Laila Lavan White Night Tel Aviv', '2022-07-01', '2022-07-01' , '19:00' ,
+  'Tel Aviv’s White Night celebration is one of the biggest events of the year, with all night parties;
+  and when the shop owners and restaurants literally don’t close. Stores that usually close at 10pm will
+  be open till 6am and beer will be drunk and music will be heard in different public locations throughout
+  the city. Even some museums and galleries stay open all night, so there are hundreds of things to do!', 
+  'Tel aviv',  'Tel aviv', NULL, 0, 'Vegan Friendly Israel' ),
+--   Second event
+
+ ('Festival', 'Food', 'Vegan Festival', '2022-06-07', '2022-06-09 ', '10:00',
+  'During the festival, you’ll enjoy a 100 vegan stalls from the best vegan restaurants and shops. 
+  In addition, you’ll find music, a holistic area, a children’s area, lectures about healthy vegan 
+  lifestyle and cooking workshops with famous chefs. Attend the event, bring with you friends and
+  family and show them all the benefits about being vegan.', 
+  'Sarona Park',  'Tel aviv', NULL, 0, 'Tel Aviv Municipality' );
+  
+  
+  
+  INSERT INTO allevents (event_type,  event_subcategory, event_name, event_date_start, 
+ event_date_end, event_time, event_info, event_address, event_city, event_img, event_price, event_producer)
+  
+  VALUES 
+  ('Activities', 'Escape Room', 'Alice in Wonderland', '2022-06-08', '2022-06-10 ', '10:00',
+  ' Alice is trapped in Wonderland and time is running out to save her!
+Follow Alice down the rabbit hole and enter a topsy-turvy world of adventure, intrigue and impossible 
+things at this immersive Alice in Wonderland event.
+For one day only, the streets of Tel Aviv will be transforming into a giant,
+escape-room-style experience on Saturday the 3rd December, 2022. Don’t be late!
+Solve clues which just get curiouser and curiouser, take on mad and mischievous challenges,
+and uncover a dark conspiracy at the heart of Wonderland.', 
+'Tel Aviv',  'Tel aviv', NULL, 230, 'test2' );
+  
+	SELECT allevents.event_name, users.user_id
+-- 	SELECT allevents.*, users.user_id
+	FROM allevents
+	INNER JOIN users ON allevents.event_producer = users.user_name;
