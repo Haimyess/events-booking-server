@@ -14,6 +14,15 @@ CREATE TABLE allevents (
 	event_producer VARCHAR(255)
 );
 
+ALTER TABLE allevents
+ADD COLUMN event_producer_id VARCHAR(255);
+
+
+UPDATE allevents
+SET event_producer_id = 'c3589e45-e8b3-42fa-89e9-6b53fa04ec74'
+WHERE event_id = '6';
+
+
 
 SELECT * FROM allevents;
 Where event_producer = 'Haim';
@@ -58,3 +67,14 @@ and uncover a dark conspiracy at the heart of Wonderland.',
 -- 	SELECT allevents.*, users.user_id
 	FROM allevents
 	INNER JOIN users ON allevents.event_producer = users.user_name;
+	
+	
+	
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 	
+	SELECT allevents.event_producer, users.user_name
+	FROM users
+	INNER JOIN allevents ON users.user_id = allevents.event_producer_id
+	UPDATE COLUMN allevents.event_producer = users.user_name;
+	
+	
+	

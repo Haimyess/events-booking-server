@@ -1,6 +1,6 @@
 /** @format */
 
-const { order, allOrders } = require("../models/Purchase");
+const { order, allOrders, ordersById } = require("../models/Purchase");
 
 const _allOrders = (req, res) => {
   allOrders()
@@ -34,9 +34,21 @@ const _order = (req, res) => {
     });
 };
 
+const _ordersById = (req, res) => {
+  ordersById(req.params.userId)
+    .then((data) => {
+      res.json(data);
+      // console.log(req.query.q);
+    })
+    .catch((err) => {
+      res.json({ msg: err.message });
+    });
+};
+
 // --------------------------
 
 module.exports = {
   _order,
   _allOrders,
+  _ordersById,
 };

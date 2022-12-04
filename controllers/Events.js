@@ -1,5 +1,6 @@
 /** @format */
 
+const { createGlobalStyle } = require("styled-components");
 const {
   getAllEvents,
   getEvent,
@@ -91,6 +92,19 @@ const _getEventsByProducer = (req, res) => {
     });
 };
 
+// UPDATE EVENT
+
+// const _updateEvent = (req, res) => {
+//   _updateEvent(req.body, req.params.eventId)
+//     .then((data) => {
+//       res.json(data);
+//       console.log(data);
+//     })
+//     .catch((err) => {
+//       res.json({ msg: err.message });
+//     });
+// };
+
 // // READ - GET Category (Specific page)
 // const _getCategory = (req, res) => {
 //   getEvent(req.params.type)
@@ -109,4 +123,5 @@ module.exports = {
   _searchEvents,
   _addEvent,
   _getEventsByProducer,
+  // _updateEvent,
 };

@@ -21,4 +21,6 @@ DROP TABLE users;
 
 ALTER TABLE users
 ADD UNIQUE (user_name);
+
+
 SELECT * FROM users;

@@ -23,6 +23,20 @@ const order = (order) => {
   return db("orders").insert(order).returning("*");
 };
 
+const ordersById = (id) => {
+  // return db("allevents").select("*").where({ event_producer: producer });
+
+  return (
+    db("orders")
+      .select("*")
+      // .select("allevents.*")
+      .from("orders")
+      // .orderBy("dates.event_day")
+      .join("users", "orders.client_email", "=", "users.user_email")
+      // .join("users", "allevents.event_producer", "=", "users.user_name")
+      .where({ "users.user_id": id })
+  );
+};
 // const ticket = (userId) => {
 //   return db("ticket").insert();
 // };
@@ -32,6 +46,7 @@ const order = (order) => {
 module.exports = {
   order,
   allOrders,
+  ordersById,
 };
 
 // const getEvent = (event_name) => {

@@ -29,7 +29,8 @@ const getEventsByProducer = (producer) => {
       // .select("allevents.*")
       .from("allevents")
       // .orderBy("dates.event_day")
-      .join("users", "allevents.event_producer", "=", "users.user_name")
+      .join("users", "allevents.event_producer_id", "=", "users.user_id")
+      // .join("users", "allevents.event_producer", "=", "users.user_name")
       .where({ "users.user_id": producer })
   );
 };
@@ -111,6 +112,16 @@ const addEvent = (event) => {
   return db("allevents").insert(event).returning("*");
 };
 
+// Update Event-- PUT
+
+// Get event that the user has and update it.
+// const updateEvent = (eventUpdated, id) => {
+//   return db("allevents")
+//     .update(eventUpdated)
+//     .where({ event_id: id })
+//     .returning("*");
+// };
+
 module.exports = {
   getAllEvents,
   getEvent,
@@ -118,4 +129,5 @@ module.exports = {
   searchEvents,
   addEvent,
   getEventsByProducer,
+  // updateEvent,
 };
