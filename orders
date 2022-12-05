@@ -3,6 +3,7 @@ CREATE TABLE orders
  	order_id VARCHAR(255) PRIMARY KEY ,
  	client_name VARCHAR(255) , 
 	client_email VARCHAR(255) , 
+	client_id VARCHAR(255),
 	client_event VARCHAR(255), 
 	client_num_tickets INTEGER, 
 	client_event_day VARCHAR(255), 
@@ -14,7 +15,7 @@ CREATE TABLE orders
 
  );
  
---  DROP TABLE orders;
+	DROP TABLE orders;
  
  
  SELECT * FROM orders;
