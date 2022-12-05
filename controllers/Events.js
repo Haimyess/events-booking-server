@@ -1,6 +1,5 @@
 /** @format */
 
-const { createGlobalStyle } = require("styled-components");
 const {
   getAllEvents,
   getEvent,
